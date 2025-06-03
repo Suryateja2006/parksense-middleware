@@ -28,9 +28,18 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY app.py .
 COPY best.pt .
 
-# Clean up
+# Clean up and install runtime deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean autoclean \
+    && apt-get autoremove -y
 
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:${PORT}", "--timeout", "120", "app:app"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s \
+    CMD curl -f http://localhost:${PORT:-8000}/health || exit 1
+
+# Default port if $PORT not set
+ENV PORT=8000
+
+CMD ["sh", "-c", "gunicorn -w 4 -b 0.0.0.0:${PORT} --timeout 120 app:app"]
