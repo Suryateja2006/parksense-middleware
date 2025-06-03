@@ -35,11 +35,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean autoclean \
     && apt-get autoremove -y
 
-# Health check
+# Health check (using fixed port 5000)
 HEALTHCHECK --interval=30s --timeout=3s \
-    CMD curl -f http://localhost:${PORT:-8000}/health || exit 1
+    CMD curl -f http://localhost:5000/health || exit 1
 
-# Default port if $PORT not set
-ENV PORT=8000
+# Explicitly set port to 5000 (override any external PORT)
+ENV PORT=5000
+EXPOSE 5000
 
-CMD ["sh", "-c", "gunicorn -w 4 -b 0.0.0.0:${PORT} --timeout 120 app:app"]
+# Command with fixed port 5000
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "--timeout", "120", "app:app"]
