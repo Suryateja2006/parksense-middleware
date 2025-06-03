@@ -283,7 +283,7 @@ def get_qr():
             })
 
         # Generate new QR if not found
-        base_url = "https://6d18-2001-4490-4cac-ec14-901f-4a32-16ce-ef81.ngrok-free.app/entry/"
+        base_url = "https://9484-117-200-139-214.ngrok-free.app/entry/"
         qr_data = base_url + plate_number
         qr_image = generate_qr(qr_data)
 
