@@ -1,0 +1,10 @@
+flask
+flask-cors
+pymongo
+opencv-python
+numpy
+qrcode
+ultralytics
+paddlepaddle
+paddleocr
+torch
