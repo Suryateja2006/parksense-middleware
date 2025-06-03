@@ -2,7 +2,7 @@ import re
 import base64
 import datetime
 from io import BytesIO
-
+import os
 import cv2
 import numpy as np
 from flask import Flask, request, jsonify
@@ -376,5 +376,8 @@ def slot_status():
 
 # ----------------- Run Server -----------------
 
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT", 5000))  # fallback to 5000 for local dev
+    app.run(debug=True, host='0.0.0.0', port=port)
