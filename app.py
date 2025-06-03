@@ -22,7 +22,7 @@ CORS(app, resources={
         "http://192.168.1.37:5173",
         "http://172.168.0.67:5173",
         "http://172.168.0.90:5173",
-        "https://parksense-frontend-omega.vercel.app/"
+        "https://parksense-frontend-omega.vercel.app"
     ]},
     r"/get-qr": {"origins": "*"},
     r"/upload_plate": {"origins": "*"},
