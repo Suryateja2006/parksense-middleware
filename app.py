@@ -211,7 +211,7 @@ def detect():
             detected_text = "NoNumberPlateDetected"
 
         # Generate QR code URL and image
-        base_url = "https://parksense-frontend-omega.vercel.app//entry/"
+        base_url = "https://parksense-frontend-omega.vercel.app/entry/"
         qr_data = base_url + detected_text
         qr_image = generate_qr(qr_data)
 
@@ -268,7 +268,7 @@ def get_qr():
 
         # Handle special guest case
         if plate_number == "NONUMBERPLATEDETECTED":
-            base_url = "https://parksense-frontend-omega.vercel.app//entry/"
+            base_url = "https://parksense-frontend-omega.vercel.app/entry/"
             qr_data = base_url + "guest"
             qr_image = generate_qr(qr_data)
 
