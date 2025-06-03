@@ -21,7 +21,8 @@ CORS(app, resources={
         "http://172.168.0.152:5173",
         "http://192.168.1.37:5173",
         "http://172.168.0.67:5173",
-        "http://172.168.0.90:5173"
+        "http://172.168.0.90:5173",
+        "https://parksense-frontend-omega.vercel.app/"
     ]},
     r"/get-qr": {"origins": "*"},
     r"/upload_plate": {"origins": "*"},
@@ -210,7 +211,7 @@ def detect():
             detected_text = "NoNumberPlateDetected"
 
         # Generate QR code URL and image
-        base_url = "http://192.168.1.37:5173/entry/"
+        base_url = "https://parksense-frontend-omega.vercel.app//entry/"
         qr_data = base_url + detected_text
         qr_image = generate_qr(qr_data)
 
@@ -267,7 +268,7 @@ def get_qr():
 
         # Handle special guest case
         if plate_number == "NONUMBERPLATEDETECTED":
-            base_url = "http://192.168.1.37:5173/entry/"
+            base_url = "https://parksense-frontend-omega.vercel.app//entry/"
             qr_data = base_url + "guest"
             qr_image = generate_qr(qr_data)
 
@@ -283,7 +284,7 @@ def get_qr():
             })
 
         # Generate new QR if not found
-        base_url = "https://9484-117-200-139-214.ngrok-free.app/entry/"
+        base_url = "https://parksense-backend-x5a2.onrender.com/entry/"
         qr_data = base_url + plate_number
         qr_image = generate_qr(qr_data)
 
